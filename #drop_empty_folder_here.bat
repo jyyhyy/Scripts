@@ -21,7 +21,7 @@ if NOT %errorlevel% == 0 (
 	set params= %*
 	echo UAC.ShellExecute "cmd.exe", "/c """"" ^& "%s%" ^& """" ^& " """ ^& "%p%" ^& """""^", "", "runas", 1 >> "%temp%\getadmin.vbs"
 	"%temp%\getadmin.vbs"
-	del "%temp%\getadmin.vbs
+	del "%temp%\getadmin.vbs"
 	exit /B
 
 :gotAdmin
