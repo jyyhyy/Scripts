@@ -32,9 +32,9 @@ if exist betaOptIn (
   rem. > "%p%\betaOptin"
 )
 
-rem. > "%~dpn0.ps1"
 echo $DST = $args[0] > "%~dpn0.ps1"
-
+echo $DEFAULT_PACKAGES = @('AcidBubbles.Timeline.210.var', 'DJ.NailPolish.1.var', 'DJ.TanLines.1.var', 'Jackaroo.SmartSuitJaR.1.var', 'JayC_Re-animator.Hair_Curly_Bob.1.var', 'MacGruber.Life.12.var', 'MeshedVR.3PointLightSetup.1.var', 'MeshedVR.AssetsPack.1.var', 'MeshedVR.BonusScenes.9.var', 'MeshedVR.DemoScenes.2.var', 'MeshedVR.OlderContent.1.var', 'MeshedVR.PresetsPack.2.var', 'NoOC.Clothing_SailorLingerie.2.var', 'NoStage3.Hair_Long_Upswept_Top_Bun.1.var', 'NoStage3.UnityAssetVamifier.20.var', 'Vince.Clothing_PleatedSkirtV2T.2.var', 'Xstatic.MegaParticlePack.1.var') >> "%~dpn0.ps1"
+echo $LINK = @('AddonPackages\', 'Cache', 'Custom\Assets\', 'Custom\Atom\Person\Textures\', 'VaM_Data\') >> "%~dpn0.ps1"
 echo $FILES = @('AddonPackages', ` >> "%~dpn0.ps1"
 echo            'AddonPackagesUserPrefs', ` >> "%~dpn0.ps1"
 echo            'Assets', ` >> "%~dpn0.ps1"
@@ -67,23 +67,6 @@ echo            'VaM_Updater.exe', ` >> "%~dpn0.ps1"
 echo            'version', ` >> "%~dpn0.ps1"
 echo            'vrmanifest', ` >> "%~dpn0.ps1"
 echo            'WinPixEventRuntime.dll', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\AcidBubbles.Timeline.210.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\DJ.NailPolish.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\DJ.TanLines.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\Jackaroo.SmartSuitJaR.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\JayC_Re-animator.Hair_Curly_Bob.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\MacGruber.Life.12.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\MeshedVR.3PointLightSetup.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\MeshedVR.AssetsPack.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\MeshedVR.BonusScenes.9.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\MeshedVR.DemoScenes.2.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\MeshedVR.OlderContent.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\MeshedVR.PresetsPack.2.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\NoOC.Clothing_SailorLingerie.2.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\NoStage3.Hair_Long_Upswept_Top_Bun.1.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\NoStage3.UnityAssetVamifier.20.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\Vince.Clothing_PleatedSkirtV2T.2.var', ` >> "%~dpn0.ps1"
-echo            'AddonPackages\Xstatic.MegaParticlePack.1.var', ` >> "%~dpn0.ps1"
 echo            'Assets\VaMAssets', ` >> "%~dpn0.ps1"
 echo            'Assets\VaMAssets\SteamVR_Bindings', ` >> "%~dpn0.ps1"
 echo            'Assets\VaMAssets\SteamVR_Bindings\actions.json', ` >> "%~dpn0.ps1"
@@ -844,7 +827,6 @@ echo            'VaM_Data\StreamingAssets\z_ui1', ` >> "%~dpn0.ps1"
 echo            'VaM_Data\StreamingAssets\z_ui2', ` >> "%~dpn0.ps1"
 echo            'VaM_Data\StreamingAssets\z_ui_mat', ` >> "%~dpn0.ps1"
 echo            'VaM_Data\StreamingAssets\z_vr_mat') >> "%~dpn0.ps1"
-echo $LINK = @('AddonPackages\', 'Cache', 'Custom\Assets\', 'Custom\Atom\Person\Textures\', 'VaM_Data\') >> "%~dpn0.ps1"
 
 echo foreach($f in $FILES) { >> "%~dpn0.ps1"
 echo   $s = $LINK ^| ? {$f.StartsWith($_)} >> "%~dpn0.ps1"
@@ -868,6 +850,9 @@ echo   } >> "%~dpn0.ps1"
 echo } >> "%~dpn0.ps1"
 echo. >> "%~dpn0.ps1"
 
+echo foreach($f in ($DEFAULT_PACKAGES)) { >> "%~dpn0.ps1"
+echo   New-Item -Path ("{0}\AddonPackages\{1}" -f $DST,$f) -ItemType SymbolicLink -Value (ls "AddonPackages\$f" -Recurse).FullName } >> "%~dpn0.ps1"
+
 echo Add-Type -assembly "System.IO.Compression.FileSystem" >> "%~dpn0.ps1"
 echo foreach($v in (ls ("{0}\AddonPackages\*.var" -f $DST))) { >> "%~dpn0.ps1"
 echo   $z = [System.IO.Compression.ZipFile]::OpenRead($v.FullName) >> "%~dpn0.ps1"
@@ -881,4 +866,3 @@ del "%~dpn0.ps1"
 
 :end
 pause
-
