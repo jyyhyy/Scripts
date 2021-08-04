@@ -39,6 +39,8 @@
   Custom\Assets\MeshedVR\ 내부의 자동차 애셋  
   Custom\Atom\Person\Textures\ 하위의 기본 텍스처
   VaM_Data\  
+  
+  나머지 자잘한 파일들은 복사함  
 
 테스트 할 파일들이나 패키지 작업용 파일들 복사해서 쓰다가
 다쓰고 나면 작업했던 파일들은 옮겨놓고 새로 만들었던 폴더 통째로 지우면 된다
