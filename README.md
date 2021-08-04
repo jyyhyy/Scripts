@@ -32,9 +32,16 @@
   NoStage3.UnityAssetVamifier.20.var  
   Vince.Clothing_PleatedSkirtV2T.2.var  
   Xstatic.MegaParticlePack.1.var  
+  
+  링크 걸리는 것들  
+  AddonPackages\ 내부의 기본 패키지들  
+  Cache  
+  Custom\Assets\MeshedVR\ 내부의 자동차 애셋  
+  Custom\Atom\Person\Textures\ 하위의 기본 텍스처
+  VaM_Data\  
 
-테스트 할 파일들 복사해서 쓰다가
-다쓰고 나면 테스트했던 파일들은 빼놓고 새로 만들었던 폴더 통째로 지우면 된다
+테스트 할 파일들이나 패키지 작업용 파일들 복사해서 쓰다가
+다쓰고 나면 작업했던 파일들은 옮겨놓고 새로 만들었던 폴더 통째로 지우면 된다
 
 임시파일 2개 생성 후 자동 삭제 됨  
 %temp%\getadmin.vbs 관리자 권한 요청용 VB스크립트  
@@ -43,4 +50,3 @@
 파워셸 스크립트는 기본적으론 드래그 앤 드랍이 안되기 때문에 배치파일로 드래그 앤 드랍을 받아서 넘겨주는 식으로 구현  
 Cache를 제외한 다른 심볼릭 링크를 폴더에 걸지 않고 파일에 건 이유  
 '예전에 디렉토리 링크를 걸어놨더니 누군가 굳이 디렉토리 내부로 들어가서 실제 파일을 지우는 일이 있었음'  
-  
